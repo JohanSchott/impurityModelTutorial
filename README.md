@@ -17,7 +17,8 @@ Follow the README instructions in the link above.
 ## Plot the generated spectra and the generated text output of NiO
 Follow the README instructions in the link above.
 
-## Installation help
+## Installation help of prerequisite libraries and compilers
+The information below is probably of interest if you experience problems in executing the program package.
 
 ### Practical help for usage on local computer
 #### Installing missing Python libraries
@@ -69,7 +70,12 @@ mkdir /usr/local/openmpi
 make all
 make install
 ```
-If this is successful, try to install mpi4py:
+If this is successful, we might still have to tell where the binaries are.
+This is done by typing:
+```bash
+export PATH=${PATH}:/usr/local/openmpi/bin
+```
+Finally, try to install mpi4py:
 ```bash
 pip install mpi4py
 ```
