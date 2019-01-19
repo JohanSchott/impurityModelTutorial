@@ -12,15 +12,20 @@ For instructions of how to get started with the spectroscopy program, read the R
 [https://github.com/JohanSchott/impurityModel](https://github.com/JohanSchott/impurityModel)
 
 ## Run simulations of NiO
-Follow the README instructions in the link above.
+Read and follow the README instructions in the link above.
 
 ## Plot the generated spectra and the generated text output of NiO
-Follow the README instructions in the link above.
+Read and follow the README instructions in the link above.
 
 ## Installation help of prerequisite libraries and compilers
 The information below is probably of interest if you experience problems in executing the program package.
 
 ### Practical help for usage on local computer
+### Installing missing Python 3.x 
+If Python 3.x is not installed it can be downloaded at e.g.: `https://www.anaconda.com/download`. 
+This will also install many useful Python libraries. 
+If only some Python libraries are missing, please look in the section below.
+
 #### Installing missing Python libraries
 If not all needed Python libraries are installed the program will stop and complain.
 We can try to install the missing libraries.
