@@ -22,7 +22,7 @@ The information below is probably of interest if you experience problems in exec
 
 ### Practical help for usage on local computer
 ### Installing missing Python 3.x 
-If Python 3.x is not installed it can be downloaded at e.g.: `https://www.anaconda.com/download`. 
+If Python 3.x is not installed it can be downloaded at e.g.: [https://www.anaconda.com/download](https://www.anaconda.com/download). 
 This will also install many useful Python libraries. 
 If only some Python libraries are missing, please look in the section below.
 
