@@ -21,7 +21,8 @@ Read and follow the README instructions in the link above.
 The information below is probably of interest if you experience problems in executing the program package.
 
 ### Practical help for usage on local computer
-### Installing missing Python 3.x 
+
+#### Installing missing Python 3.x 
 If Python 3.x is not installed it can be downloaded at e.g.: [https://www.anaconda.com/download](https://www.anaconda.com/download). 
 This will also install many useful Python libraries. 
 If only some Python libraries are missing, please look in the section below.
@@ -171,9 +172,8 @@ After simulations, deactivate the virtual environment:
 ```bash
 deactivate 
 ```
-  
 
-### Practical help with matplotlib errors
+## Practical help with matplotlib errors
 In Python, when importing `matplotlib.pylab`, an error similar to:
 ```bash
 ImportError: Matplotlib qt-based backends require an external PyQt4, PyQt5, PySide or PySide2 package to be installed, but it was not found.
