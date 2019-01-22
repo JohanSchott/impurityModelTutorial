@@ -94,16 +94,26 @@ pip install mpi4py
 Load a module with all needed Python libraries installed, e.g.:
 ```bash
 module load anaconda/py36/4.3
+module load git/2.16.2
 ```
-Start an interactive node, or create a job script.
-Then, setup Python by typing:
+There might be a need to create a virtualenv. If needed, type e.g.:
+```bash
+conda create -n custom
+source activate custom
+conda install mpi4py
+```
+Start an interactive node (or create a job script):
+```bash
+interactive -t 00:30:00 -N 1 -A $ACCOUNT_NAME
+```
+Once in the interactive session, activate the virtual enviroment:
 ```bash
 source activate custom
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 ```
 Run the program:
 ```bash
-aprun -n 2  NiO.py 
+aprun -n 2 NiO.py 
 ```
 
 For plotting, there might be some issues on Beskow. 
@@ -118,17 +128,19 @@ plotSpectra.py
 ```
 
 #### On Tetralith:
-Load a module with all needed Python libraries installed, e.g.:
+Load modules, e.g.:
 ```bash
 module load Python/3.6.7-env-nsc1-gcc-2018a-eb
+module load buildenv-gcc/2018a-eb
+module load git
 ```
-Some libraries are missing here so we have to create a virtual environment:
+Some Python libraries are not installed in the loaded Python module so we have to create a virtual environment:
 ```bash
-virtualenv --system-site-packages test
+virtualenv --system-site-packages impurityModelEnv
 ```
 Activate the virtual environment (that we just created):
 ```bash
-. test/bin/activate
+. impurityModelEnv/bin/activate
 ```
 Install the following libraries (this is done only once):
 ```bash
@@ -139,28 +151,41 @@ Deactivate the virtual environment (that we created):
 ```bash
 deactivate
 ```
-Start an interactive node, or create a job script.
-Then, setup Python by typing:
+Start an interactive node (or create a job script):
 ```bash
-. test/bin/activate
+interactive -t 00:30:00 -N 1 -A $ACCOUNT_NAME
 ```
-Run the program:
+Once in the interactive session, activate the virtual enviroment:
 ```bash
-mpirun -n 2  NiO.py 
+. impurityModelEnv/bin/activate
+```
+Run the script:
+```bash
+NiO.py
+```
+Running the script with MPI should be done with something like this:
+```bash
+mpiexec python NiO.py
+```
+After simulations, deactivate the virtual environment:
+```bash
 deactivate 
 ```
-
-
   
 
-
-
-
-
-
-
-
-
-
-
+### Practical help with matplotlib errors
+In Python, when importing `matplotlib.pylab`, an error similar to:
+```bash
+ImportError: Matplotlib qt-based backends require an external PyQt4, PyQt5, PySide or PySide2 package to be installed, but it was not found.
+```
+might happen. In this case, a solution might be to change the backend used by matplotlib. This can be done by editing the `matplotlibrc` file (usually stored in `~/.config/matplotlib/matplotlibrc`). Search for `backend` and type e.g.:
+```bash
+backend      : Qt5Agg
+```  
+Another, more temporary, solution is to set the backend while inside the Python session:
+```python
+import matplotlib
+matplotlib.use('Qt5Agg')
+import matplotlib.pylab as plt
+```
 
