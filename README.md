@@ -112,10 +112,15 @@ Once in the interactive session, activate the virtual enviroment:
 source activate custom
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 ```
-Run the program:
+Run the program with 2 MPI ranks:
 ```bash
-aprun -n 2 NiO.py 
+aprun -n 2 Ni_NiO_1bath.py > output.txt 
 ```
+If RAM memory is an issue, one can execute the program like this:
+```bash
+aprun -n 8 -N 2 -d 1 Ni_NiO_1bath.py > output.txt 
+```
+Here 8 MPI ranks are used, 2 MPI ranks per node and without OpenMP threading.
 
 For plotting, there might be some issues on Beskow. 
 Therefor, it might be better to do plotting from Tegner instead. 
@@ -139,6 +144,7 @@ Some Python libraries are not installed in the loaded Python module so we have t
 ```bash
 virtualenv --system-site-packages impurityModelEnv
 ```
+Now a folder called `impurityModelEnv` should exist.
 Activate the virtual environment (that we just created):
 ```bash
 . impurityModelEnv/bin/activate
@@ -162,15 +168,22 @@ Once in the interactive session, activate the virtual enviroment:
 ```
 Run the script:
 ```bash
-NiO.py
+Ni_NiO_1bath.py
 ```
-Running the script with MPI should be done with something like this:
+Run the script using MPI, with e.g. 2 MPI ranks:
 ```bash
-mpiexec python NiO.py
+mpiexec -n 2 Ni_NiO_1bath.py
 ```
 After simulations, deactivate the virtual environment:
 ```bash
 deactivate 
+```
+
+#### OpenMP
+From experience it seems simulations run faster without OpenMP threading.
+This can typically be enforced by typing:
+```bash
+export OMP_NUM_THREADS=1
 ```
 
 ## Practical help with matplotlib errors
