@@ -119,11 +119,8 @@ Type e.g.:
 path/to/folder/impurityModel/scripts/run_Ni_NiO_Xbath.sh 20 2 > output.txt
 ```
 This will start a simulation with 2 MPI ranks.
-If RAM memory is an issue, one can use the MPI parameters:
-```bash
-aprun -n 8 -N 2 -d 1
-```
-Here 8 MPI ranks are used, 2 MPI ranks per node and without OpenMP threading.
+If RAM memory is an issue, one can use the MPI parameters `aprun -n 8 -N 2 -d 1`.
+Here 8 MPI ranks are used, 2 MPI ranks per node and no OpenMP threading.
 
 For plotting, there might be some issues on Beskow. 
 Therefor, it might be better to do plotting from Tegner instead. 
@@ -132,8 +129,8 @@ Login at Tegner and load the Python module:
 module load anaconda/py36/5.0.1 
 ```
 Move to folder where the simulations are done and type:
-```
-plotSpectra.py
+```bash
+python -m impurityModel.plotScripts.plotSpectra
 ```
 
 #### On Tetralith:
