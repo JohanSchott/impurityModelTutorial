@@ -112,13 +112,16 @@ Once in the interactive session, activate the virtual enviroment:
 source activate custom
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 ```
-Run the program with 2 MPI ranks:
+On Beskow one should use `aprun` instead of `mpirun`.
+Therefore, in `run_Ni_NiO_Xbath.sh`, replace `mpirun` with `aprun`.
+Type e.g.:
 ```bash
-aprun -n 2 Ni_NiO_1bath.py > output.txt 
+path/to/folder/impurityModel/scripts/run_Ni_NiO_Xbath.sh 20 2 > output.txt
 ```
-If RAM memory is an issue, one can execute the program like this:
+This will start a simulation with 2 MPI ranks.
+If RAM memory is an issue, one can use the MPI parameters:
 ```bash
-aprun -n 8 -N 2 -d 1 Ni_NiO_1bath.py > output.txt 
+aprun -n 8 -N 2 -d 1
 ```
 Here 8 MPI ranks are used, 2 MPI ranks per node and without OpenMP threading.
 
@@ -166,14 +169,13 @@ Once in the interactive session, activate the virtual enviroment:
 ```bash
 . impurityModelEnv/bin/activate
 ```
-Run the script:
+On Tetralith one should use `mpiexec` instead of `mpirun`.
+Therefore, in `run_Ni_NiO_Xbath.sh`, replace `mpirun` with `mpiexec`.
+Type e.g.:
 ```bash
-Ni_NiO_1bath.py
+path/to/folder/impurityModel/scripts/run_Ni_NiO_Xbath.sh 20 2 > output.txt
 ```
-Run the script using MPI, with e.g. 2 MPI ranks:
-```bash
-mpiexec -n 2 Ni_NiO_1bath.py
-```
+to start a simulation with 2 MPI ranks.
 After simulations, deactivate the virtual environment:
 ```bash
 deactivate 
